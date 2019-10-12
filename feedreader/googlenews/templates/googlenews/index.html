@@ -1,0 +1,16 @@
+{% extends 'googlenews/base.html' %}
+
+
+{% block content %}
+<ul class="collection">
+    {% if warning %}
+        <li class="collection-item"> No Records to display </li>
+    {% else %}
+        {% for post in posts %}
+        <li class="collection-item"><a href="{{post.link}}" target="_blank"> {{post.title}}</a> - {{post.published_date}}</li>
+        {% endfor %}
+    {%endif %}
+</ul>
+
+{% endblock %}
+
