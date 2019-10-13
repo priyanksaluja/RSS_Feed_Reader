@@ -17,11 +17,12 @@ def import_data():
         if feed_data:
             for post in feed_data.entries:
                 post_title = post.title
+                post_published_date = datetime.strptime(post.published, "%a, %d %b %Y %H:%M:%S %Z")
                 if check_if_post_in_db(post_title):
                     continue
                 else:
                     Feed.objects.create(title=post_title, link=post.link,
-                                    published_date=post.published, source='Google News')
+                                    published_date=post_published_date, source='Google News')
                     cnt+=1
 
             message = "{} records inserted".format(cnt)
